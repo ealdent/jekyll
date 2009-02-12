@@ -342,17 +342,33 @@ The argument to <code>highlight</code> is the language identifier. To find the
 appropriate identifier to use for your favorite language, look for the "short
 name" on the "Lexers":http://pygments.org/docs/lexers/ page.
 
+There is a second argument to <code>highlight</code> called
+<code>linenos</code> that is optional. Including the <code>linenos</code>
+argument will force the highlighted code to include line numbers. For
+instance, the following code block would include line numbers next to each
+line:
+
+<pre>
+{% highlight ruby linenos %}
+def foo
+  puts 'foo'
+end
+{% endhighlight %}
+</pre>
+
 In order for the highlighting to show up, you'll need to include a
 highlighting stylesheet. For an example stylesheet you can look at
 "syntax.css":http://github.com/mojombo/tpw/tree/master/css/syntax.css. These
 are the same styles as used by GitHub and you are free to use them for your
-own site.
+own site. If you use linenos, you might want to include an additional CSS
+class definition for <code>lineno</code> in syntax.css to distinguish the line
+numbers from the highlighted code.
 
 h2. Categories
 
-Posts are placed into categories based on the directory structure they are found
-within (see above for an example). The categories can be accessed from within
-a Liquid template as follows:
+Posts are placed into categories based on the directory structure they are
+found within (see above for an example). The categories can be accessed from
+within a Liquid template as follows:
 
 <pre>
 {% for post in site.categories.foo %}
@@ -363,25 +379,6 @@ a Liquid template as follows:
 This would list all the posts in the category 'foo' by date and title.
 
 The posts within each category are sorted in reverse chronological order.
-
-h2. Contribute
-
-If you'd like to hack on Jekyll, grab the source from GitHub. To get
-all of the dependencies, install the gem first.
-
-  $ git clone git://github.com/mojombo/jekyll
-
-The best way to get your changes merged back into core is as follows:
-
-# Fork mojombo/jekyll on GitHub
-# Clone down your fork
-# Create a topic branch to contain your change
-# Hack away
-# If you are adding new functionality, document it in README.textile
-# Do not change the version number, I will do that on my end
-# If necessary, rebase your commits into logical chunks, without errors
-# Push the branch up to GitHub
-# Send me (mojombo) a pull request for your branch
 
 h2. Blog migrations
 
@@ -432,6 +429,25 @@ the entries contained therein.
 The hostname defaults to _localhost_, all other variables are needed
 You may need to adjust the code used to filter entries. Left alone,
 it will attempt to pull all entries that are live or sticky.
+
+h2. Contribute
+
+If you'd like to hack on Jekyll, start by forking my repo on GitHub:
+
+http://github.com/mojombo/jekyll
+
+To get all of the dependencies, install the gem first. The best way to get
+your changes merged back into core is as follows:
+
+# Clone down your fork
+# Create a topic branch to contain your change
+# Hack away
+# Add tests and make sure everything still passes by running `rake`
+# If you are adding new functionality, document it in README.textile
+# Do not change the version number, I will do that on my end
+# If necessary, rebase your commits into logical chunks, without errors
+# Push the branch up to GitHub
+# Send me (mojombo) a pull request for your branch
 
 h2. License
 
